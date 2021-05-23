@@ -13,6 +13,6 @@
     "512": "logo512.png",
     "192": "logo192.png"
   },
-  "content_security_policy": "script-src 'self' 'sha256-neFVcYNx3t5TJIuPku/mmGGR9MBOk9WhYNRUIDtu7/w='; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'sha256-2VwCJFOjJbl7AxZeKKOazl0tnQxLDgSQACKU3ePe0bM='; object-src 'self'",
   "permissions": []
 }
