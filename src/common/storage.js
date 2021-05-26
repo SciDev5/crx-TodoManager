@@ -1,7 +1,7 @@
 // @ts-check
 /// <reference path="../../refrences/chrome.intellisense.js" />
 
-/** @typedef {{newValue:any,oldValue:any}} StorageChange */
+/** @typedef {{newValue?:any,oldValue?:any}} StorageChange */
 /** @typedef {{[key: string]: StorageChange}} StorageChangesMap */
 
 async function set(/**@type {{[key:string]:any}}*/keys) {
@@ -10,7 +10,8 @@ async function set(/**@type {{[key:string]:any}}*/keys) {
     else {
         /** @type {StorageChangesMap} */ var changes = {};
         for (var key in keys) {
-            changes[key] = { oldValue: JSON.parse(localStorage.getItem(key)||"null"), newValue:keys[key] };
+            var oldValue = JSON.parse(localStorage.getItem(key)||"null");
+            changes[key] = oldValue ? { oldValue , newValue:keys[key] } : { newValue:keys[key]};
             localStorage.setItem(key,JSON.stringify(keys[key]));
         }
         onChange(changes,null);
@@ -41,7 +42,8 @@ async function remove(/**@type {string[]|string}*/keys) {
         var keysArray = typeof(keys)==="string"?[keys]:keys;
         if (!keysArray) keysArray = Object.keys(localStorage);
         for (var key of keysArray) {
-            changes[key] = { oldValue: JSON.parse(localStorage.getItem(key)||"null"), newValue: null };
+            var oldValue = JSON.parse(localStorage.getItem(key)||"null");
+            if (oldValue) changes[key] = { oldValue };
             localStorage.removeItem(key);
         }
         onChange(changes,null);
