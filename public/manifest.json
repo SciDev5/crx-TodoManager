@@ -13,6 +13,8 @@
     "512": "logo512.png",
     "192": "logo192.png"
   },
-  "content_security_policy": "script-src 'self' 'sha256-2VwCJFOjJbl7AxZeKKOazl0tnQxLDgSQACKU3ePe0bM='; object-src 'self'",
-  "permissions": []
+  "content_security_policy": "script-src 'self' 'sha256-1AFVkbjX1YRSzq4akRsB1FF8M/jZFsh6/O0NmXcCbqk='; object-src 'self'",
+  "permissions": [
+    "storage"
+  ]
 }
