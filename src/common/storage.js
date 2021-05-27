@@ -3,6 +3,7 @@
 
 /** @typedef {{newValue?:any,oldValue?:any}} StorageChange */
 /** @typedef {{[key: string]: StorageChange}} StorageChangesMap */
+/** @typedef {"local" | "sync" | "managed"} StorageNamespaces */
 
 async function set(/**@type {{[key:string]:any}}*/keys) {
     if (syncStorage)
@@ -50,16 +51,21 @@ async function remove(/**@type {string[]|string}*/keys) {
     }
 }
 
-/** @type {((changes: StorageChangesMap, namespace: "local" | "sync" | "managed") => any)[]} */
+/** @type {((changes: StorageChangesMap, namespace: StorageNamespaces) => any)[]} */
 var changeCallbacks = [];
-/** @param {StorageChangesMap} changes @param {"local" | "sync" | "managed"} namespace */
+/** @param {StorageChangesMap} changes @param {StorageNamespaces} namespace */
 function onChange(changes, namespace) {
     console.log("CHANGES [%2$s]: \n%1$o", changes, namespace);
     for (var callback of changeCallbacks) callback(changes,namespace);
 }
-/** @param {(changes: StorageChangesMap, namespace: "local" | "sync" | "managed") => any} funk */
+/** @param {(changes: StorageChangesMap, namespace: StorageNamespaces) => any} funk */
 function addChangeCallback(funk) {
     changeCallbacks.push(funk);
+}
+/** @param {(changes: StorageChangesMap, namespace: StorageNamespaces) => any} funk */
+function removeChangeCallback(funk) {
+    if (changeCallbacks.includes(funk))
+        changeCallbacks.splice(changeCallbacks.indexOf(funk));
 }
 
 
@@ -67,6 +73,6 @@ var syncStorage = process.env.NODE_ENV === "production" ? window.chrome.storage.
 if (syncStorage) window.chrome.storage.onChanged.addListener(onChange);
 
 
-const storage = { set, get, remove, addChangeCallback };
+const storage = { set, get, remove, addChangeCallback, removeChangeCallback };
 window["customStorage"] = storage;
 export default storage;
