@@ -28,6 +28,10 @@ const htStorage = new NamespacedStorage("homework-tracker");
 
 /** @extends {React.Component<{},{popup?:"add"|"sort",sorting:any},{}>} */
 class HomeworkTracker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {popup:null,sorting:null};
+    }
 
     closePopup() { console.log("!!CLOSING POPUP") }
     /** @param {import("./code/hw-tracker").Assignment} assignment */
