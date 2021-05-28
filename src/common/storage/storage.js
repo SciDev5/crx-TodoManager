@@ -1,5 +1,5 @@
 // @ts-check
-/// <reference path="../../refrences/chrome.intellisense.js" />
+/// <reference path="../../../refrences/chrome.intellisense.js" />
 
 /** @typedef {{newValue?:any,oldValue?:any}} StorageChange */
 /** @typedef {{[key: string]: StorageChange}} StorageChangesMap */

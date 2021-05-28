@@ -69,7 +69,7 @@ class NamespacedStorage {
     /** @private @param {import("./storage").StorageChangesMap} changed @param {import("./storage").StorageNamespaces} namespace */
     changeCallback(changed,namespace) {
         var filteredChanges = Object.entries(changed).filter(entry=>this.matchesKey(entry[0]));
-        if (filteredChanges.length == 0) return;
+        if (filteredChanges.length === 0) return;
         /** @type {import("./storage").StorageChangesMap} */ var recombinedChanges = {};
         for (let change of filteredChanges) recombinedChanges[change[0]] = change[1];
         for (let callback of this.callbacks) callback(recombinedChanges,namespace);

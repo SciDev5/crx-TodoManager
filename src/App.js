@@ -1,5 +1,4 @@
 // @ts-check
-import "./App.scss";
 import { Redirect, Route, Switch } from "react-router";
 import React from "react";
 import Main from "./pages/main/Main";
