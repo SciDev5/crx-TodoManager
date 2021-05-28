@@ -8,7 +8,7 @@ class Header extends React.Component {
     render() {
         return (<header className="Header">
             {(!this.props.isMainMenu)&&<Link to="/" className="-back !!button">!!back</Link>}
-            <span className="-title"><Translate key={this.props.nameKey}/></span>
+            <span className="-title"><Translate text={this.props.nameKey}/></span>
         </header>);
     }
 }

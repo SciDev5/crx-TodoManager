@@ -1,10 +1,10 @@
 // @ts-check
 import React from "react";
 
-/** @extends {React.Component<{key:string},{},{}>} */
+/** @extends {React.Component<{text:string},{},{}>} */
 class Translate extends React.Component {
     render() {
-        return "TRANSLATED:"+this.props.key;
+        return "TRANSLATED:"+this.props.text;
     }
 }
 
