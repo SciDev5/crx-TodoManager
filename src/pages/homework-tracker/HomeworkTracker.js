@@ -5,6 +5,8 @@ import Header from "../../common/react/Header";
 import Button from "../../common/react/button/Button";
 import AddPopup from "./react/AddPopup";
 import SortPopup from "./react/SortPopup";
+import Assignment from "./code/Assignment";
+import AssignmentRow from "./react/AssignmentRow";
 
 /*LAYOUT PLAN
 
@@ -26,24 +28,62 @@ import SortPopup from "./react/SortPopup";
 
 const htStorage = new NamespacedStorage("homework-tracker");
 
-/** @extends {React.Component<{},{popup?:"add"|"sort",sorting:any},{}>} */
+// !!DEBUG
+const assignmentsTemp = new Array(3).fill().map(()=>new Assignment());
+assignmentsTemp[0].name = "a";
+assignmentsTemp[1].name = "second1";
+assignmentsTemp[2].due.set(10,4,2023);
+// !!/DEBUG
+
+/** @extends {React.Component<{},{popup?:"add"|"sort",assignments:Assignment[],editingAssignment?:Assignment,sorting:any},{}>} */
 class HomeworkTracker extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {popup:null,sorting:null};
+        this.state = {popup:null,sorting:null,assignments:assignmentsTemp};
+        window["hte"] = this; // !!DEBUG
     }
 
     closePopup() { console.log("!!CLOSING POPUP") }
-    /** @param {import("./code/hw-tracker").Assignment} assignment */
-    addAssignment(assignment) { console.log("!!ADDING ASSIGNMENT",assignment); this.closePopup(); }
+
+    /** @param {Assignment} assignment */
+    addAssignment(assignment) {
+        this.state.assignments.push(assignment);
+        this.closePopup();
+        this.updateAssignmentState();
+    }
+    /** @param {this["state"]["assignments"][number]} assignment */
+    removeAssignment(assignment) {
+        var i = this.state.assignments.indexOf(assignment);
+        if (i >= 0) this.state.assignments.splice(i,1);
+        this.updateAssignmentState();
+    }
+    /** @param {this["state"]["assignments"][number]} assignment */
+    showEditAssignment(assignment) {
+        this.setState({editingAssignment: assignment});
+    }
+    updateAssignmentState() { this.forceUpdate(); }
+
     /** @param {import("./code/hw-tracker").SortConfig} sortConfig */
-    updateSorting(sortConfig) { console.log("!!UPDATING SORTING",sortConfig); this.closePopup(); }
+    updateSorting(sortConfig) {
+        console.log("!!UPDATING SORTING",sortConfig);
+        this.setState({sorting:sortConfig});
+        this.closePopup();
+    }
 
     render() {
         return (<div className="HomeworkTracker">
             <Header nameKey="!!hw-tracker" />
             <div role="main">
                 <Button action={console.log.bind(console,"!!TEST")} nameKey={"!!yeet"} />
+                <div className="-Assignments">
+                    {this.state.assignments.map(assignment=>
+                        <AssignmentRow key={assignment.reactKey} assignment={assignment}
+                            editing={this.state.editingAssignment && this.state.editingAssignment.reactKey === assignment.reactKey}
+                            beginEditing={()=>this.showEditAssignment(assignment)}
+                            update={()=>this.updateAssignmentState()}
+                            remove={()=>this.removeAssignment(assignment)} />
+                    )}
+                </div>
             </div>
             { this.state.popup === "add" && 
                 <AddPopup
@@ -51,7 +91,7 @@ class HomeworkTracker extends React.Component {
                     cancel={()=>this.closePopup()} /> }
             { this.state.popup === "sort" &&
                 <SortPopup
-                    done={(sortConfig)=>this.updateSorting(sortConfig)}
+                    done={sortConfig=>this.updateSorting(sortConfig)}
                     cancel={()=>this.closePopup()} /> }
         </div>);
     }

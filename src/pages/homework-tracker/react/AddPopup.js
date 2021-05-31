@@ -1,12 +1,13 @@
 // @ts-check
 import React from "react";
+import Popup from "../../../common/react/popup/Popup";
 
-/** @extends {React.Component<{done:(assignment:import("../code/hw-tracker").Assignment)=>any,cancel:()=>any},{},{}>} */
+/** @extends {React.Component<{done:(assignment:import("../code/Assignment").default)=>any,cancel:()=>any},{},{}>} */
 class AddPopup extends React.Component {
     render() {
-        return (<div className="hwt-AddPopup">
+        return (<Popup className="hwt-AddPopup">
             <></>
-        </div>);
+        </Popup>);
     }
 }
 
