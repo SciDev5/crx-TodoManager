@@ -2,7 +2,7 @@
 import React from "react";
 import Header from "../../common/react/Header";
 import Button from "../../common/react/button/Button";
-import AddPopup from "./react/AddPopup";
+import EditPopup from "./react/EditPopup";
 import SortPopup from "./react/SortPopup";
 import Assignment from "./code/Assignment";
 import AssignmentRow from "./react/AssignmentRow";
@@ -34,7 +34,7 @@ assignmentsTemp[1].name = "second1";
 assignmentsTemp[2].due.set(10,4,2023);
 // !!/DEBUG
 
-/** @extends {React.Component<{},{popup?:"add"|"sort",assignments:Assignment[],editingAssignment?:Assignment,sorting:any},{}>} */
+/** @extends {React.Component<{},{popup?:"add"|"sort"|"edit",assignments:Assignment[],editingAssignment?:Assignment,sorting:any},any>} */
 class HomeworkTracker extends React.Component {
     constructor(props) {
         super(props);
@@ -42,27 +42,35 @@ class HomeworkTracker extends React.Component {
         window["hte"] = this; // !!DEBUG
     }
 
-    /** @param {"add"|"sort"} popup*/
-    openPopup(popup) { this.setState({popup}); }
+    openAddPopup() {
+        var assignment = new Assignment();
+        this.addAssignment(assignment);
+        this.setState({editingAssignment:assignment,popup:"add"});
+    }
+    cancelEdit() {
+        if (this.state.popup === "add")
+            this.removeAssignment(this.state.editingAssignment);
+        this.closePopup();
+    }
+    /** @param {Assignment} assignment */
+    openEditPopup(assignment) { this.setState({editingAssignment:assignment,popup:"edit"}); }
+    openSortPopup() { this.setState({popup:"sort"}); }
     closePopup() { this.setState({popup:null}); }
 
     /** @param {Assignment} assignment */
     addAssignment(assignment) {
         this.state.assignments.push(assignment);
         this.closePopup();
-        this.updateAssignmentState();
     }
     /** @param {this["state"]["assignments"][number]} assignment */
     removeAssignment(assignment) {
         var i = this.state.assignments.indexOf(assignment);
         if (i >= 0) this.state.assignments.splice(i,1);
-        this.updateAssignmentState();
     }
     /** @param {this["state"]["assignments"][number]} assignment */
     setEditingAssignment(assignment) {
         this.setState({editingAssignment: assignment});
     }
-    updateAssignmentState() { this.forceUpdate(); }
 
     /** @param {import("./code/hw-tracker").SortConfig} sortConfig */
     updateSorting(sortConfig) {
@@ -76,22 +84,23 @@ class HomeworkTracker extends React.Component {
         return (<div className="HomeworkTracker">
             <Header nameKey="!!hw-tracker" />
             <div role="main">
-                <Button action={()=>this.openPopup("add")} nameKey={"!!create"} />
-                <Button action={()=>this.openPopup("sort")} nameKey={"!!change sorting"} />
+                <Button action={()=>this.openAddPopup()} nameKey={"!!create"} />
+                <Button action={()=>this.openSortPopup()} nameKey={"!!change sorting"} />
                 <div className="-Assignments">
                     {this.state.assignments.map(assignment=>
                         <AssignmentRow key={assignment.reactKey} assignment={assignment}
-                            editing={this.state.editingAssignment && this.state.editingAssignment.reactKey === assignment.reactKey}
-                            setEditing={editing=>this.setEditingAssignment(editing?assignment:null)}
-                            update={()=>this.updateAssignmentState()}
+                            /*editing={this.state.editingAssignment && this.state.editingAssignment.reactKey === assignment.reactKey}
+                            setEditing={editing=>this.setEditingAssignment(editing?assignment:null)}*/
+                            edit={()=>this.openEditPopup(assignment)}
                             remove={()=>this.removeAssignment(assignment)} />
                     )}
                 </div>
             </div>
-            { this.state.popup === "add" && 
-                <AddPopup
-                    done={assignment=>this.addAssignment(assignment)}
-                    cancel={()=>this.closePopup()} /> }
+            { (this.state.popup === "add" || this.state.popup === "edit") && 
+                <EditPopup
+                    assignment={this.state.editingAssignment}
+                    done={()=>this.closePopup()}
+                    cancel={()=>this.cancelEdit()} /> }
             { this.state.popup === "sort" &&
                 <SortPopup
                     done={sortConfig=>this.updateSorting(sortConfig)}

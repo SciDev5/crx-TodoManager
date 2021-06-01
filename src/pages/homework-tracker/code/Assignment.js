@@ -23,7 +23,19 @@ class Assignment {
         this.due.json = due;
     }
 
-    static get defaultName() { return "assignment"; }
+    validate() {
+        var {name, due, link, subject} = this;
+        if (typeof(name)!=="string"||typeof(link)!=="string"||typeof(subject)!=="string" || !due || !(due instanceof DayDate))
+            return ["!!type mismatch or missing data"];
+        /** @type {string[]} */
+        var errors = [];
+        if (name.length === 0 || name.length > 25) errors.push("!!name len 1-25");
+        if (subject.length > 25) errors.push("!!subject len must be <= 25");
+        if (name.length > 200) errors.push("!!name len must be <= 200");
+        return errors;
+    }
+
+    static get defaultName() { return "new assignment"; }
     static get defaultDue() { return DayDate.today; }
     static get defaultSubject() { return ""; }
     static get defaultLink() { return ""; }
