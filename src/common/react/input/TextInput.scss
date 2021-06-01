@@ -1,0 +1,42 @@
+//@import "../../Global.scss";
+
+$bg1: #000000; $bg2: $bg1; $bg3: $bg1; $bg4: $bg1;
+$fg1: $bg1; $fg2: $fg1; $fg3: $fg1; $fg4: $fg1;
+$em1: $bg1;
+$transition_short: 0.3s;
+
+input.TextInput, .PassInput.TextInput input {
+    //@include interactableStyle();
+    padding: 0px 10px;
+    &::placeholder {
+        color: $fg2;
+        opacity: 0.5;
+    }
+}
+.PassInput.TextInput {
+    $showPassButtonSize: 25px;
+    position: relative;
+    display: inline-block;
+    input { width: 100%; }
+    button {
+        position: absolute;
+        top: calc(50% - #{$showPassButtonSize / 2});
+        right: 4px;
+        width: $showPassButtonSize;
+        height: $showPassButtonSize;
+        background-color: transparent;
+        border: none;
+        padding: 0px;
+        margin: 0px;
+        display: block;
+        svg {
+            width: 100%;
+            height: 100%;
+            --svg-fg: #{$fg2};
+            transition: var(--svg-fg) $transition_short;
+        }
+    }
+    input:hover + button svg {
+        --svg-fg: #{$fg1};
+    }
+}

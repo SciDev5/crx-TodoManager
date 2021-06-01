@@ -1,6 +1,5 @@
 // @ts-check
 import React from "react";
-import NamespacedStorage from "../../common/storage/NamespacedStorage";
 import Header from "../../common/react/Header";
 import Button from "../../common/react/button/Button";
 import AddPopup from "./react/AddPopup";
@@ -26,7 +25,7 @@ import AssignmentRow from "./react/AssignmentRow";
 */
 
 
-const htStorage = new NamespacedStorage("homework-tracker");
+//const htStorage = new NamespacedStorage("homework-tracker");
 
 // !!DEBUG
 const assignmentsTemp = new Array(3).fill().map(()=>new Assignment());
@@ -43,7 +42,9 @@ class HomeworkTracker extends React.Component {
         window["hte"] = this; // !!DEBUG
     }
 
-    closePopup() { console.log("!!CLOSING POPUP") }
+    /** @param {"add"|"sort"} popup*/
+    openPopup(popup) { this.setState({popup}); }
+    closePopup() { this.setState({popup:null}); }
 
     /** @param {Assignment} assignment */
     addAssignment(assignment) {
@@ -58,7 +59,7 @@ class HomeworkTracker extends React.Component {
         this.updateAssignmentState();
     }
     /** @param {this["state"]["assignments"][number]} assignment */
-    showEditAssignment(assignment) {
+    setEditingAssignment(assignment) {
         this.setState({editingAssignment: assignment});
     }
     updateAssignmentState() { this.forceUpdate(); }
@@ -70,16 +71,18 @@ class HomeworkTracker extends React.Component {
         this.closePopup();
     }
 
+
     render() {
         return (<div className="HomeworkTracker">
             <Header nameKey="!!hw-tracker" />
             <div role="main">
-                <Button action={console.log.bind(console,"!!TEST")} nameKey={"!!yeet"} />
+                <Button action={()=>this.openPopup("add")} nameKey={"!!create"} />
+                <Button action={()=>this.openPopup("sort")} nameKey={"!!change sorting"} />
                 <div className="-Assignments">
                     {this.state.assignments.map(assignment=>
                         <AssignmentRow key={assignment.reactKey} assignment={assignment}
                             editing={this.state.editingAssignment && this.state.editingAssignment.reactKey === assignment.reactKey}
-                            beginEditing={()=>this.showEditAssignment(assignment)}
+                            setEditing={editing=>this.setEditingAssignment(editing?assignment:null)}
                             update={()=>this.updateAssignmentState()}
                             remove={()=>this.removeAssignment(assignment)} />
                     )}

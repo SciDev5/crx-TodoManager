@@ -36,6 +36,10 @@ class DayDate {
         var year = this.year, month = this.month, day = this.day;
         return {day,month,year};
     }
+    getDateString() {
+        var { year, month, day } = this.get();
+        return year+"-"+(month+1<10?"0":"")+(month+1)+"-"+(day<10?"0":"")+day;
+    }
     /** The date's 4-digit year. */
     get year() { return this.backbone.getUTCFullYear() }
     /** The date's month index (zero-indexed) */

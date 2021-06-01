@@ -1,26 +1,24 @@
 // @ts-check
 import React from "react";
 import Button from "../../../common/react/button/Button";
+import TextInput from "../../../common/react/input/TextInput";
 
-/** @extends {React.Component<{assignment:import("../code/Assignment").default,update:()=>any,remove:()=>any,editing:boolean,beginEditing:()=>any},{},{}>} */
+/** @extends {React.Component<{assignment:import("../code/Assignment").default,update:()=>any,remove:()=>any,editing:boolean,setEditing:(editing:boolean)=>any},{},{}>} */
 class AssignmentRow extends React.Component {
 
     remove() {
         this.props.remove();
     }
-    edit() {
-        this.props.beginEditing();
+    setEditing(editing) {
+        this.props.setEditing(editing);
     }
 
     /** General input event.
      * @param {"name"} type 
-     * @param {React.ChangeEvent<HTMLInputElement>} e */
-    onInput(type,e) {
+     * @param {string} value */
+    onInput(type,value) {
         if (!this.props.editing) return;
-
-        var value = e.target.value;
-        console.log(value,type);
-        if (value === "name")
+        if (type === "name")
             this.props.assignment.name = value;
         this.props.update();
     }
@@ -29,8 +27,8 @@ class AssignmentRow extends React.Component {
         var { assignment, editing } = this.props;
         return (
             <div className="hwt-Assignment">
-                <span>Name: {editing?<input value={assignment.name} onChange={this.onInput.bind(this,"name")}/>:assignment.name}</span>
-                {!editing && <Button action={()=>this.edit()} nameKey="!!edit" />}
+                <span>Name: {editing?<TextInput value={assignment.name} change={this.onInput.bind(this,"name")} placeholder="!!ph"/>:assignment.name}</span>
+                <Button action={()=>this.setEditing(!editing)} nameKey={"!!setedit-"+!editing} />
                 <Button action={()=>this.remove()} nameKey="!!delete" />
             </div>
         );
