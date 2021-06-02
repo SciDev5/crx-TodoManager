@@ -1,24 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Roboto+Condensed&display=swap');
+@import "./vars.scss";
 
 :root {
   --background: #ffffff;
-  --background-em: #17684d;
-  --text: #263f31;
+  --background-em: #414141;
+  --text: #000000;
   --text-em: #ffffff;
 
-  --border: #89c5a9;
+  --border: #c4c4c4;
 
-  --button-border: #00cc77;
-  --button-background: #c1ffe5;
+  --interactable-fg: #505050;
+  --interactable-bg: #e7e7e7;
+  --interactable-bg-hov: #d6d6d6;
+  --interactable-em-fg: #fdfdfd;
+  --interactable-em-bg: #3b3b3b;
 }
-
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: $font-sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
+  width: 400px;
+  height: 600px;
+  border: 1px solid var(--background-em);
 }
 
 code {

@@ -1,6 +1,7 @@
 // @ts-check
 import React from "react";
 import Translate from "../../lang/Translate";
+import "./Button.scss";
 
 /** @extends {React.Component<{action:()=>any,className?:string,nameKey?:string,ariaLabel?:string,unstyled?:boolean,disabled?:boolean},{},{}>} */
 class Button extends React.Component {

@@ -1,0 +1,18 @@
+@import "../../vars.scss";
+
+.Header {
+    height: 27px;
+    line-height: 20px;
+    font-family: $font-title;
+    font-size: 1.2em;
+    background: var(--background-em);
+    color: var(--text-em);
+    * {
+        padding: 5px 5px 3px 5px;
+        display: inline-block;
+    }
+    .-back {
+        border-right: 1px dotted var(--text-em);
+        color: var(--text-em);
+    }
+}

@@ -1,4 +1,30 @@
-@mixin interactable {
-    border: var(--button-border) 1px solid;
-    background: var(--button-background);
+@import "../../vars.scss";
+
+@mixin interactable($emphasis:false) {
+    height: 25px;
+
+    border: var(--interactable-fg) solid;
+    border-width: 3px 0px;
+    background: var(--interactable-bg);
+    color: var(--text);
+    font-family: $font-sans;
+    
+    &:hover {
+        background: var(--interactable-bg-hov);
+    }
+    @if $emphasis == true {
+        &:hover {
+            color: var(--interactable-em-fg);
+            background: var(--interactable-em-bg);
+            border-color: var(--interactable-em-bg);
+        }
+    }
+    transition: 0.3s color, 0.3s background, 0.3s border-color;
+
+    padding: 2px 5px 5px 5px;
+    margin: 5px;
+
+    &:disabled {
+        opacity: 0.5;
+    }
 }
