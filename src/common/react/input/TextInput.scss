@@ -1,4 +1,4 @@
-//@import "../../Global.scss";
+@import "../interactable.scss";
 
 $bg1: #000000; $bg2: $bg1; $bg3: $bg1; $bg4: $bg1;
 $fg1: $bg1; $fg2: $fg1; $fg3: $fg1; $fg4: $fg1;
@@ -6,7 +6,7 @@ $em1: $bg1;
 $transition_short: 0.3s;
 
 input.TextInput, .PassInput.TextInput input {
-    //@include interactableStyle();
+    @include interactable();
     padding: 0px 10px;
     &::placeholder {
         color: $fg2;
