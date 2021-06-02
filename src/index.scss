@@ -12,5 +12,10 @@ code {
     monospace;
 }
 
+
+.invalid { // TODO
+  outline: 3px solid red;
+}
+
 @media (prefers-color-scheme: light) { body { --theme: light; } }
 @media (prefers-color-scheme: dark) { body { --theme: dark; } }

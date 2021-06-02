@@ -55,7 +55,7 @@ class DayDate {
         var now = new Date();
         return new Date(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate()));
     }
-    /** @private @param {number} day @param {number} month @param {number} year */
+    /** @param {number} day @param {number} month @param {number} year */
     static isDayMonthYearValid(day,month,year) {
         return (
             typeof(year)==="number" &&
