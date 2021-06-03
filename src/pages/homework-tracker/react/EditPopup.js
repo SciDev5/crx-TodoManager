@@ -35,12 +35,13 @@ class EditPopup extends React.Component {
     render() {
         var assignment = this.state.assignment;
         return (<Popup className="hwt-EditPopup">
-            <div className="-input"><span><Translate text="!!name"/></span><TextInput placeholder="!!name" change={this.update.bind(this,"name")} value={assignment.name}/></div>
-            <div className="-input"><span><Translate text="!!subject"/></span><TextInput placeholder="!!subject" change={this.update.bind(this,"subject")} value={assignment.subject}/></div>
-            <div className="-input"><span><Translate text="!!link"/></span><TextInput placeholder="!!link" change={this.update.bind(this,"link")} value={assignment.link}/></div>
-            <div className="-input"><span><Translate text="!!date"/></span><DateInput ariaLabel="!!date" change={this.update.bind(this,"due")} value={assignment.due} /></div>
-            <Button action={()=>this.done()} nameKey="!!done"/>
-            <Button action={()=>this.cancel()} nameKey="!!cancel"/>
+            <h2><Translate text="!!edit assignment"/></h2>
+            <div className="-input"><label><Translate text="!!name"/></label><TextInput placeholder="!!name" change={this.update.bind(this,"name")} value={assignment.name}/></div>
+            <div className="-input"><label><Translate text="!!subject"/></label><TextInput placeholder="!!subject" change={this.update.bind(this,"subject")} value={assignment.subject}/></div>
+            <div className="-input"><label><Translate text="!!link"/></label><TextInput placeholder="!!link" change={this.update.bind(this,"link")} value={assignment.link}/></div>
+            <div className="-input"><label><Translate text="!!date"/></label><DateInput ariaLabel="!!date" change={this.update.bind(this,"due")} value={assignment.due} /></div>
+            <Button action={()=>this.done()} nameKey="!!done" className="-done-button"/>
+            <Button action={()=>this.cancel()} nameKey="!!cancel" className="-cancel-button"/>
         </Popup>);
     }
 }

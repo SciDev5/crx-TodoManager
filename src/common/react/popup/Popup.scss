@@ -1,8 +1,9 @@
 .Popup {
     position: absolute;
-    left: 0; top: 0; bottom: 0; right: 0;
+    left: 1px; top: 1px; bottom: 1px; right: 1px;
     .-bg {
-        background: #3ef1e988;/*TODO insert color variables*/
+        background: var(--background);/*TODO insert color variables*/
+        opacity: 0.7;
     }
     .-bg, .-content {
         position: absolute;

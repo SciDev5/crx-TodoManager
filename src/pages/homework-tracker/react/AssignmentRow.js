@@ -9,8 +9,8 @@ class AssignmentRow extends React.Component {
         return (
             <div className="hwt-Assignment">
                 <span>Name: {assignment.name}</span>
-                <Button action={()=>this.props.edit()} nameKey="!!edit" />
-                <Button action={()=>this.props.remove()} nameKey="!!delete" />
+                <Button action={()=>this.props.edit()} nameKey="!!edit" unstyled={true} />
+                <Button action={()=>this.props.remove()} nameKey="!!delete" unstyled={true}/>
             </div>
         );
     }

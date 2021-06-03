@@ -1,0 +1,36 @@
+
+.HomeworkTracker {
+    .-add-button, .-sort-button {
+        display: inline-block;
+        width: calc(50% - 10px);
+        text-align: center;
+    }
+}
+
+.hwt-EditPopup {
+    h2 {
+        text-align: center;
+        background: var(--background);
+        opacity: 0.7;
+    }
+    .-input {
+        text-align: center;
+        label {
+            width: 120px;
+            height: 25px;
+            line-height: 25px;
+            background: var(--background-em);
+            color: var(--text-em);
+            display: inline-block;
+            margin: 5px;
+            padding: 0px 10px;
+            text-align: right;
+        }
+        .TextInput, .DateInput {
+            width: 190px;
+        }
+    }
+    .-done-button, .-cancel-button {
+        width: 190px;
+    }
+}

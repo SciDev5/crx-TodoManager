@@ -6,6 +6,7 @@ import EditPopup from "./react/EditPopup";
 import SortPopup from "./react/SortPopup";
 import Assignment from "./code/Assignment";
 import AssignmentRow from "./react/AssignmentRow";
+import "./HomeworkTracker.scss"
 
 /*LAYOUT PLAN
 
@@ -66,6 +67,7 @@ class HomeworkTracker extends React.Component {
     removeAssignment(assignment) {
         var i = this.state.assignments.indexOf(assignment);
         if (i >= 0) this.state.assignments.splice(i,1);
+        this.forceUpdate();
     }
     /** @param {this["state"]["assignments"][number]} assignment */
     setEditingAssignment(assignment) {
@@ -84,8 +86,8 @@ class HomeworkTracker extends React.Component {
         return (<div className="HomeworkTracker">
             <Header nameKey="!!hw-tracker" />
             <div role="main">
-                <Button action={()=>this.openAddPopup()} nameKey={"!!create"} />
-                <Button action={()=>this.openSortPopup()} nameKey={"!!change sorting"} />
+                <Button action={()=>this.openAddPopup()} nameKey={"!!create"} className="-add-button" />
+                <Button action={()=>this.openSortPopup()} nameKey={"!!change sorting"} className="-sort-button"/>
                 <div className="-Assignments">
                     {this.state.assignments.map(assignment=>
                         <AssignmentRow key={assignment.reactKey} assignment={assignment}
