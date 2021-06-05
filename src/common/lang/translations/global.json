@@ -1,0 +1,4 @@
+{
+    "test": "TEST TEXT",
+    "test2": ["TEXT %yeet% x%numlol%",{"yeet":"string","numlol":"number"}]
+}
