@@ -36,11 +36,11 @@ class EditPopup extends React.Component {
         var assignment = this.state.assignment;
         return (<Popup className="hwt-EditPopup">
             <h2><Translate text="hw-tracker.popup.create.title"/></h2>
-            <div className="-input"><label><Translate text="!!name"/></label><TextInput placeholder="!!name" change={this.update.bind(this,"name")} value={assignment.name}/></div>
-            <div className="-input"><label><Translate text="!!subject"/></label><TextInput placeholder="!!subject" change={this.update.bind(this,"subject")} value={assignment.subject}/></div>
-            <div className="-input"><label><Translate text="!!link"/></label><TextInput placeholder="!!link" change={this.update.bind(this,"link")} value={assignment.link}/></div>
-            <div className="-input"><label><Translate text="!!date"/></label><DateInput ariaLabel="!!date" change={this.update.bind(this,"due")} value={assignment.due} /></div>
-            <Button action={()=>this.done()} nameKey="general.complete" className="-done-button"/>
+            <div className="-input"><label><Translate text="hw-tracker.popup.create.name"/></label><TextInput placeholder="hw-tracker.popup.create.name" change={this.update.bind(this,"name")} value={assignment.name}/></div>
+            <div className="-input"><label><Translate text="hw-tracker.popup.create.subject"/></label><TextInput placeholder="hw-tracker.popup.create.subject" change={this.update.bind(this,"subject")} value={assignment.subject}/></div>
+            <div className="-input"><label><Translate text="hw-tracker.popup.create.link"/></label><TextInput placeholder="hw-tracker.popup.create.link" change={this.update.bind(this,"link")} value={assignment.link}/></div>
+            <div className="-input"><label><Translate text="hw-tracker.popup.create.due"/></label><DateInput ariaLabel="hw-tracker.popup.create.due" change={this.update.bind(this,"due")} value={assignment.due} /></div>
+            <Button action={()=>this.done()} nameKey="general.done" className="-done-button"/>
             <Button action={()=>this.cancel()} nameKey="general.cancel" className="-cancel-button"/>
         </Popup>);
     }

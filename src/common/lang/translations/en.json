@@ -1,10 +1,10 @@
 {
     "general": {
-        "back": "back",
-        "cancel": "cancel",
-        "complete": "done",
-        "modify": "edit",
-        "remove": "delete"
+        "back": "Back",
+        "cancel": "Cancel",
+        "done": "Done",
+        "edit": "Edit",
+        "remove": "Delete"
 
     },
     "header": {
@@ -13,7 +13,14 @@
     "hw-tracker": {
         "": "Homework Tracker",
         "popup": {
-            "create": {"":"Add Assignment","title":"Add/Edit Assignment"},
+            "create": {
+                "":"Add Assignment",
+                "title":"Add/Edit Assignment",
+                "name": "Name",
+                "link": "Link",
+                "due": "Due Date",
+                "subject": "Subject"
+            },
             "sort": {"":"Change Sorting"}
         }
     }
