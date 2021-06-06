@@ -8,7 +8,7 @@ import "./Header.scss";
 class Header extends React.Component {
     render() {
         return (<header className="Header">
-            {(!this.props.isMainMenu)&&<Link to="/" className="-back !!button">!!back</Link>}
+            {(!this.props.isMainMenu)&&<Link to="/" className="-back !!button"><Translate text={"header.back"}/></Link>}
             <span className="-title"><Translate text={this.props.nameKey}/></span>
         </header>);
     }

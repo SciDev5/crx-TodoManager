@@ -31,7 +31,7 @@ function denestDict_recursive(denested,path,dict,isElement,separator,objectPath)
         path.push(key);
         if (isElement(value)) {
             // @ts-ignore
-            denested[path.join(separator)] = value;
+            denested[path.filter(Boolean).join(separator)] = value;
         } else {
             // @ts-ignore
             /**@type {NestedDict<T>}*/ var subDict = value;

@@ -6,7 +6,7 @@ import "./TextInput.scss";
 
 
 /** A general purpose text input component.
- * @extends {React.Component<{change?:((value:DayDate)=>any),submit?:(()=>void),value?:DayDate,placeholder?:string,type?:"text"|"password",verify?:(value:DayDate)=>boolean,ariaLabel?:string},{value:DayDate,textValue:string,valid:boolean},any>} */
+ * @extends {React.Component<{change?:((value:DayDate)=>any),submit?:(()=>void),value?:DayDate,type?:"text"|"password",verify?:(value:DayDate)=>boolean,ariaLabel?:string},{value:DayDate,textValue:string,valid:boolean},any>} */
 class DateInput extends React.Component {
     /**
      * @param {{ change?: (value: DayDate) => any; submit?: () => void; value?: DayDate; placeholder?: string; type?: "text" | "password"; verify?: (value: DayDate) => boolean; ariaLabel?: string; } | Readonly<{ change?: (value: DayDate) => any; submit?: () => void; value?: DayDate; placeholder?: string; type?: "text" | "password"; verify?: (value: DayDate) => boolean; ariaLabel?: string; }>} props
@@ -46,11 +46,11 @@ class DateInput extends React.Component {
     // Render
     render() {
         var name = this.props.ariaLabel?Translate.text(this.props.ariaLabel):undefined;
-        var placeholder = Translate.text(this.props.placeholder);        
+        var ariaLabel = Translate.text(this.props.ariaLabel);        
         return (<input type="date"
             value={this.state.textValue}
             onChange={this.onChange} onKeyPress={this.onKey}
-            name={name} placeholder={placeholder}
+            name={name} aria-label={ariaLabel}
             className={"TextInput"+(this.state.valid?"":" invalid")} />)
     }
 }

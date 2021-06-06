@@ -84,10 +84,10 @@ class HomeworkTracker extends React.Component {
 
     render() {
         return (<div className="HomeworkTracker">
-            <Header nameKey="!!hw-tracker" />
+            <Header nameKey="hw-tracker" />
             <div role="main">
-                <Button action={()=>this.openAddPopup()} nameKey={"!!create"} className="-add-button" />
-                <Button action={()=>this.openSortPopup()} nameKey={"!!change sorting"} className="-sort-button"/>
+                <Button action={()=>this.openAddPopup()} nameKey={"hw-tracker.popup.create"} className="-add-button" />
+                <Button action={()=>this.openSortPopup()} nameKey={"hw-tracker.popup.sort"} className="-sort-button"/>
                 <div className="-Assignments">
                     {this.state.assignments.map(assignment=>
                         <AssignmentRow key={assignment.reactKey} assignment={assignment}

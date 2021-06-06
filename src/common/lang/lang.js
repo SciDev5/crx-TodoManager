@@ -92,13 +92,19 @@ var locale = ["en","us"];
 async function setLocale(localeString) {
     var [lang,region] = localeString.split(/-|_/).map(v=>v.toLowerCase());
     locale = [lang,region||null];
-    // New local translation is set (if a regioned language does not exist, a regionless translation will be fallen back to).
-    translations_local = compileLang(
-        (region && await import("./translations/"+lang+"-"+region+".json")) ||
-        (await import("./translations/"+lang+".json"))
-    );
+    translations_local = compileLang(await getTranslationData(lang,region));
 }
 function getLocale() { return locale.filter(Boolean).join("-"); }
+
+/** get new local translation (if a regioned language does not exist, a regionless translation will be fallen back to).
+ * @param {string} lang
+ * @param {string} region
+ * @returns {Promise<any>} */
+async function getTranslationData(lang,region) {
+    if (region) try { return await import("./translations/"+lang+"-"+region+".json"); } finally {
+    try {             return await import("./translations/"+lang+".json");            } finally {
+    return {}; }}
+}
 
 const lang = {setLocale,getLocale,translate};
 window["lang"] = lang;

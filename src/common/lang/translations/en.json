@@ -1,3 +1,20 @@
 {
-    "test": "ENGLISH TEST (lol)"
+    "general": {
+        "back": "back",
+        "cancel": "cancel",
+        "complete": "done",
+        "modify": "edit",
+        "remove": "delete"
+
+    },
+    "header": {
+        "back": "<< back"
+    },
+    "hw-tracker": {
+        "": "Homework Tracker",
+        "popup": {
+            "create": {"":"Add Assignment","title":"Add/Edit Assignment"},
+            "sort": {"":"Change Sorting"}
+        }
+    }
 }
