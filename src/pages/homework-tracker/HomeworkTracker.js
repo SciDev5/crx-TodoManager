@@ -7,6 +7,7 @@ import SortPopup from "./react/SortPopup";
 import Assignment from "./code/Assignment";
 import AssignmentRow from "./react/AssignmentRow";
 import "./HomeworkTracker.scss"
+import Translate from "../../common/lang/Translate";
 
 /*LAYOUT PLAN
 
@@ -89,13 +90,13 @@ class HomeworkTracker extends React.Component {
                 <Button action={()=>this.openAddPopup()} nameKey={"hw-tracker.popup.create"} className="-add-button" />
                 <Button action={()=>this.openSortPopup()} nameKey={"hw-tracker.popup.sort"} className="-sort-button"/>
                 <div className="-Assignments">
-                    {this.state.assignments.map(assignment=>
-                        <AssignmentRow key={assignment.reactKey} assignment={assignment}
-                            /*editing={this.state.editingAssignment && this.state.editingAssignment.reactKey === assignment.reactKey}
-                            setEditing={editing=>this.setEditingAssignment(editing?assignment:null)}*/
-                            edit={()=>this.openEditPopup(assignment)}
-                            remove={()=>this.removeAssignment(assignment)} />
-                    )}
+                    {this.state.assignments.length > 0 ?
+                        this.state.assignments.map(assignment=>
+                            <AssignmentRow key={assignment.reactKey} assignment={assignment}
+                                edit={()=>this.openEditPopup(assignment)}
+                                remove={()=>this.removeAssignment(assignment)} /> ) :
+                        <Translate text="!!no assignments" />
+                    }
                 </div>
             </div>
             { (this.state.popup === "add" || this.state.popup === "edit") && 

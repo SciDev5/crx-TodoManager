@@ -66,6 +66,12 @@ class DayDate {
             year >= 1000
         );
     }
+
+    /** Get locale date string.
+     * @param {string | string[]} locale */
+    toLocaleString(locale) {
+        return new Date(this.backbone.getTime() + (this.backbone.getTimezoneOffset()*60*1000)).toLocaleDateString(locale);
+    }
 }
 
 export default DayDate;

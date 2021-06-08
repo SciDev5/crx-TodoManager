@@ -7,6 +7,65 @@
     }
 }
 
+
+.hwt-Assignment {
+    $lSize: 25px;
+    .-hdr {
+        height: $lSize;
+        display: block;
+        background: var(--background-med);
+        color: var(--text-med);
+        border-top: 0.5px solid var(--border);
+        position: relative;
+        .-arrow { 
+            line-height: $lSize;
+            display: inline-block;
+            width: $lSize;
+            text-align: center;
+            font-family: "Odibee Sans", sans-serif;
+            transition: 0.3s transform;
+            &.-opened {
+                transform: rotate(90deg);
+            }
+        }
+        .-name { line-height: $lSize; }
+        .Button {
+            height: 100%;
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px 5px;
+            border: none;
+        }
+        .-buttons {
+            position: absolute;
+            right: 0px; top: 0px; height: 100%;
+        }
+    }
+    .-body {
+        transition: 0.3s height;
+        height: 80px;
+        overflow: hidden;
+        &:not(.-opened) {
+            height: 0px;
+        }
+        .-row {
+            padding: 5px; padding-bottom: 0px;
+            label {
+                width: 80px;
+                padding-right: 5px;
+                margin-right: 5px;
+                border-right: 1px dotted var(--border);
+                display: inline-block;
+            }
+            span {
+                background: var(--background-em);
+                color: var(--text-em);
+            }
+        }
+    }
+}
+
+
 .hwt-EditPopup {
     h2 {
         text-align: center;

@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Roboto+Condensed&display=swap');
 @import "./vars.scss";
 
-:root {
+//*   
+:root { // LIGHT MODE
   --background: #ffffff;
+  --background-med: #f7f7f7;
   --background-em: #414141;
   --text: #000000;
+  --text-med: #353535;
   --text-em: #ffffff;
 
-  --border: #c4c4c4;
+  --border: #777777;
 
   --interactable-fg: #505050;
   --interactable-bg: #e7e7e7;
@@ -15,6 +18,24 @@
   --interactable-em-fg: #fdfdfd;
   --interactable-em-bg: #3b3b3b;
 }
+/*/    
+:root { // DARK MODE
+  --background: #3d3d3d;
+  --background-med: #292929;
+  --background-em: #161616;
+  --text: #ffffff;
+  --text-med: #f0f0f0;
+  --text-em: #d6d6d6;
+
+  --border: #777777;
+
+  --interactable-fg: #acacac;
+  --interactable-bg: #252525;
+  --interactable-bg-hov: #474747;
+  --interactable-em-fg: #292929;
+  --interactable-em-bg: #f0f0f0;
+}
+//*/
 
 body {
   margin: 0;
@@ -27,6 +48,8 @@ body {
   /*border: 1.4px solid var(--background-em);*/
 
   font-size: 15px;
+  
+  background: var(--background);
 }
 
 code {

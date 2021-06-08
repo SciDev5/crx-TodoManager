@@ -22,6 +22,9 @@
                 "subject": "Subject"
             },
             "sort": {"":"Change Sorting"}
-        }
+        },
+        "link": "Link",
+        "due": "Due Date",
+        "subject": "Subject"
     }
 }
