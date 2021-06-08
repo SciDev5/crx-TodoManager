@@ -5,6 +5,16 @@
         width: calc(50% - 10px);
         text-align: center;
     }
+    .-Assignments {
+        .-empty-info {
+            display: block;
+            margin: 10px;
+            padding: 5px;
+            text-align: center;
+            background: var(--background-med);
+            color: var(--text-med);
+        }
+    }
 }
 
 

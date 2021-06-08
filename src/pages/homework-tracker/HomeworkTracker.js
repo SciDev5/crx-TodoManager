@@ -95,7 +95,7 @@ class HomeworkTracker extends React.Component {
                             <AssignmentRow key={assignment.reactKey} assignment={assignment}
                                 edit={()=>this.openEditPopup(assignment)}
                                 remove={()=>this.removeAssignment(assignment)} /> ) :
-                        <Translate text="!!no assignments" />
+                        <span className="-empty-info"><Translate text="!!no assignments" /></span>
                     }
                 </div>
             </div>
