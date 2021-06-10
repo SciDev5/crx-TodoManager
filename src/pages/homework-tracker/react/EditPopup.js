@@ -38,6 +38,7 @@ class EditPopup extends React.Component {
             <h2><Translate text="hw-tracker.popup.create.title"/></h2>
             <div className="-input"><label><Translate text="hw-tracker.popup.create.name"/></label><TextInput placeholder="hw-tracker.popup.create.name" change={this.update.bind(this,"name")} value={assignment.name}/></div>
             <div className="-input"><label><Translate text="hw-tracker.popup.create.subject"/></label><TextInput placeholder="hw-tracker.popup.create.subject" change={this.update.bind(this,"subject")} value={assignment.subject}/></div>
+            <div className="-input"><label><Translate text="hw-tracker.popup.create.description"/></label><TextInput placeholder="hw-tracker.popup.create.description" change={this.update.bind(this,"description")} value={assignment.description}/></div>
             <div className="-input"><label><Translate text="hw-tracker.popup.create.link"/></label><TextInput placeholder="hw-tracker.popup.create.link" change={this.update.bind(this,"link")} value={assignment.link}/></div>
             <div className="-input"><label><Translate text="hw-tracker.popup.create.due"/></label><DateInput ariaLabel="hw-tracker.popup.create.due" change={this.update.bind(this,"due")} value={assignment.due} /></div>
             <Button action={()=>this.done()} nameKey="general.done" className="-done-button"/>

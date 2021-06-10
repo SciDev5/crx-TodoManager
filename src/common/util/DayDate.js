@@ -1,5 +1,7 @@
 // @ts-check
 
+import lang from "../lang/lang";
+
 class DayDate {
     backbone = DayDate.nowDate;
 
@@ -71,6 +73,23 @@ class DayDate {
      * @param {string | string[]} locale */
     toLocaleString(locale) {
         return new Date(this.backbone.getTime() + (this.backbone.getTimezoneOffset()*60*1000)).toLocaleDateString(locale);
+    }
+
+
+
+    toDaysUntilString() {
+        const deltaDays = Math.round((this.backbone.getTime()-DayDate.nowDate.getTime())/86400000);
+        const deltaWeeks = Math.floor(deltaDays/7);
+        if (deltaDays < 0)
+            return lang.translate("general.due-in.passed");
+        else if (deltaDays === 0)
+            return lang.translate("general.due-in.today");
+        else if (deltaDays === 1)
+            return lang.translate("general.due-in.tomorrow");
+        else if (deltaWeeks >= 2)
+            return lang.translate("general.due-in.weeks",{weeks:deltaWeeks});
+        else
+            return lang.translate("general.due-in.days",{days:deltaDays});
     }
 }
 

@@ -39,6 +39,7 @@
             }
         }
         .-name { line-height: $lSize; }
+        .-due { margin-left: 5px; font-weight: bold; }
         .Button {
             height: 100%;
             box-sizing: border-box;
@@ -53,7 +54,7 @@
     }
     .-body {
         transition: 0.3s height;
-        height: 80px;
+        height: 10em;
         overflow: hidden;
         &:not(.-opened) {
             height: 0px;
@@ -70,6 +71,12 @@
             span {
                 background: var(--background-em);
                 color: var(--text-em);
+            }
+            a {
+                background: var(--background-em);
+                color: var(--text-em);
+                display: inline-block;
+                max-width: 295px;
             }
         }
     }

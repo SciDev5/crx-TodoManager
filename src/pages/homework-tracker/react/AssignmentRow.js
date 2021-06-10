@@ -24,6 +24,7 @@ class AssignmentRow extends React.Component {
                 <div className="-hdr">
                     <span className={"-arrow"+(opened?" -opened":"")}>{">"}</span>
                     <span className="-name">{assignment.name}</span>
+                    <span className="-due">{assignment.due.toDaysUntilString()}</span>
                     <div className="-buttons">
                         <Button action={()=>this.props.edit()} nameKey="general.edit" unstyled={false} />
                         <Button action={()=>this.props.remove()} nameKey="general.remove" unstyled={false}/>
@@ -31,7 +32,8 @@ class AssignmentRow extends React.Component {
                 </div>
                 <div className={"-body"+(opened?" -opened":"")}>
                     <AssignmentDataRow label="hw-tracker.subject" data={assignment.subject} />
-                    <AssignmentDataRow label="hw-tracker.link" data={assignment.link} />
+                    <AssignmentDataRow label="hw-tracker.description" data={assignment.description} />
+                    <AssignmentDataRow label="hw-tracker.link" data={assignment.link} linkify />
                     <AssignmentDataRow label="hw-tracker.due" data={assignment.due.toLocaleString(lang.getLocale())} />
                 </div>
             </div>

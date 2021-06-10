@@ -4,14 +4,21 @@
         "cancel": "Cancel",
         "done": "Done",
         "edit": "Edit",
-        "remove": "Delete"
-
+        "remove": "Delete",
+        "due-in": {
+            "passed": "Overdue",
+            "today": "Due today",
+            "tomorrow": "Due tomorrow",
+            "days": ["Due in %days% days",{"days":"number"}],
+            "weeks": ["Due in %weeks% weeks",{"weeks":"number"}]
+        }
     },
     "header": {
         "back": "<< back"
     },
     "hw-tracker": {
         "": "Homework Tracker",
+        "no-assignments": "No homework!",
         "popup": {
             "create": {
                 "":"Add Assignment",
@@ -19,12 +26,14 @@
                 "name": "Name",
                 "link": "Link",
                 "due": "Due Date",
-                "subject": "Subject"
+                "subject": "Subject",
+                "description": "Description"
             },
             "sort": {"":"Change Sorting"}
         },
         "link": "Link",
         "due": "Due Date",
-        "subject": "Subject"
+        "subject": "Subject",
+        "description": "Description"
     }
 }
