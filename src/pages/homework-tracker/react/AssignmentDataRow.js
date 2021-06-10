@@ -14,7 +14,7 @@ function AssignmentDataRow(props) {
         <div className="-row">
             <label><Translate text={props.label}/></label>
             { props.linkify ?
-                <a href={httpifyLink(props.data)}>{props.data}</a> :
+                <a href={httpifyLink(props.data)} target="_blank" rel="noreferrer">{props.data}</a> :
                 <span>{props.data}</span>
             }
         </div>
