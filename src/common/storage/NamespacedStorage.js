@@ -19,7 +19,7 @@ class NamespacedStorage {
      * @private
      * @param {string} key */
     transformKey(key) {
-        return `${this.name}.${key}`;
+        return `${this.name}:${key}`;
     }
     /** Check if a storage key is from this namespace.
      * @private
@@ -53,8 +53,20 @@ class NamespacedStorage {
         }
     }
     
+    /** Remove the <namespace>: from a get request. 
+     * @param {{[key:string]:any}} map
+     * @returns {{[key:string]:any}} */
+    detransformMapKeys(map) {
+        var newMap = {};
+        for (var [key, value] of Object.entries(map)) {
+            if (!this.matchesKey(key)) return null;
+            newMap[key.substr(this.name.length+1)] = value;
+        }
+        return newMap;
+    }
+
     /** @param {string|string[]} keys */
-    async get(keys) {  return storage.get(this.transformKeys(keys)); }
+    async get(keys) {  return this.detransformMapKeys(await storage.get(this.transformKeys(keys))); }
     /** @param {{[key:string]:any}} keys */
     async set(keys) {  return storage.set(this.transformKeys(keys)); }
     /** @param {string|string[]} keys */

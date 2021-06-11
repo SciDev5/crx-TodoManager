@@ -32,7 +32,7 @@ class DateInput extends React.Component {
         if (!valid) { this.setState({valid:false}); return; }
         this.setState({value, valid: true});
         if (this.props.change && (this.props.change instanceof Function)) this.props.change(value);
-        console.log(value.getDateString(),valueAsDate.toUTCString(),valid,day,month,year);
+        //console.log(value.getDateString(),valueAsDate.toUTCString(),valid,day,month,year);
     }
 
     /** The keypressed handler for the the input.

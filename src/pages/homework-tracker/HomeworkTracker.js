@@ -8,6 +8,7 @@ import Assignment from "./code/Assignment";
 import AssignmentRow from "./react/AssignmentRow";
 import "./HomeworkTracker.scss"
 import Translate from "../../common/lang/Translate";
+import NamespacedStorage from "../../common/storage/NamespacedStorage";
 
 /*LAYOUT PLAN
 
@@ -27,7 +28,7 @@ import Translate from "../../common/lang/Translate";
 */
 
 
-//const htStorage = new NamespacedStorage("homework-tracker");
+const htStorage = new NamespacedStorage("homework-tracker");
 
 // !!DEBUG
 const assignmentsTemp = new Array(3).fill().map(()=>new Assignment());
@@ -40,7 +41,16 @@ assignmentsTemp[2].due.set(10,4,2023);
 class HomeworkTracker extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {popup:null,sorting:null,assignments:assignmentsTemp};
+        htStorage.get("assignments").then(v=>{
+            var data = v["assignments"];
+            console.log(v,data);
+            if (!data || data.length === 0) return;
+            var assignments = new Array(data.length).fill().map(()=>new Assignment());
+            assignments.forEach((assignment,i) => assignment.json = data[i]);
+            if (this.mounted) this.setState({assignments});
+            else this.state.assignments = assignments;
+        });
+        this.state = {popup:null,sorting:null,assignments:[]};
         window["hte"] = this; // !!DEBUG
     }
 
@@ -53,6 +63,12 @@ class HomeworkTracker extends React.Component {
         if (this.state.popup === "add")
             this.removeAssignment(this.state.editingAssignment);
         this.closePopup();
+    }
+    /** @param {boolean} isPopup */
+    finishEdit(isPopup) {
+        var assignments = this.state.assignments.map(v=>v.json);
+        htStorage.set({assignments});
+        if (isPopup) this.closePopup();
     }
     /** @param {Assignment} assignment */
     openEditPopup(assignment) { this.setState({editingAssignment:assignment,popup:"edit"}); }
@@ -68,6 +84,7 @@ class HomeworkTracker extends React.Component {
     removeAssignment(assignment) {
         var i = this.state.assignments.indexOf(assignment);
         if (i >= 0) this.state.assignments.splice(i,1);
+        this.finishEdit(false);
         this.forceUpdate();
     }
     /** @param {this["state"]["assignments"][number]} assignment */
@@ -82,6 +99,8 @@ class HomeworkTracker extends React.Component {
         this.closePopup();
     }
 
+    mounted = false;
+    componentDidMount() { this.mounted = true; }
 
     render() {
         return (<div className="HomeworkTracker">
@@ -102,7 +121,7 @@ class HomeworkTracker extends React.Component {
             { (this.state.popup === "add" || this.state.popup === "edit") && 
                 <EditPopup
                     assignment={this.state.editingAssignment}
-                    done={()=>this.closePopup()}
+                    done={()=>this.finishEdit(true)}
                     cancel={()=>this.cancelEdit()} /> }
             { this.state.popup === "sort" &&
                 <SortPopup
