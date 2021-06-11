@@ -30,12 +30,6 @@ import NamespacedStorage from "../../common/storage/NamespacedStorage";
 
 const htStorage = new NamespacedStorage("homework-tracker");
 
-// !!DEBUG
-const assignmentsTemp = new Array(3).fill().map(()=>new Assignment());
-assignmentsTemp[0].name = "a";
-assignmentsTemp[1].name = "second1";
-assignmentsTemp[2].due.set(10,4,2023);
-// !!/DEBUG
 
 /** @extends {React.Component<{},{popup?:"add"|"sort"|"edit",assignments:Assignment[],editingAssignment?:Assignment,sorting:any},any>} */
 class HomeworkTracker extends React.Component {
@@ -43,7 +37,6 @@ class HomeworkTracker extends React.Component {
         super(props);
         htStorage.get("assignments").then(v=>{
             var data = v["assignments"];
-            console.log(v,data);
             if (!data || data.length === 0) return;
             var assignments = new Array(data.length).fill().map(()=>new Assignment());
             assignments.forEach((assignment,i) => assignment.json = data[i]);
@@ -51,7 +44,6 @@ class HomeworkTracker extends React.Component {
             else this.state.assignments = assignments;
         });
         this.state = {popup:null,sorting:null,assignments:[]};
-        window["hte"] = this; // !!DEBUG
     }
 
     openAddPopup() {
