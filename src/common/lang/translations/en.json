@@ -29,7 +29,22 @@
                 "subject": "Subject",
                 "description": "Description"
             },
-            "sort": {"":"Change Sorting"}
+            "sort": {
+                "":"Change Sorting",
+                "title": "Change Sorting",
+                "current": ["Sorting by: %field%, %dir%",{"field":"string","dir":"string"}],
+                "field": {
+                    "":"Sort by:",
+                    "due":"Due Date",
+                    "name":"Name",
+                    "subject":"Subject"
+                },
+                "dir": {
+                    "":"Order:",
+                    "asc": "Ascending",
+                    "dsc": "Descending"
+                }
+            }
         },
         "link": "Link",
         "due": "Due Date",

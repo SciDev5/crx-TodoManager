@@ -125,6 +125,12 @@ class HomeworkTracker extends React.Component {
             <div role="main">
                 <Button action={()=>this.openAddPopup()} nameKey={"hw-tracker.popup.create"} className="-add-button" />
                 <Button action={()=>this.openSortPopup()} nameKey={"hw-tracker.popup.sort"} className="-sort-button"/>
+                <span className="-sort-current">
+                    <Translate text="hw-tracker.popup.sort.current" subs={{
+                        field: Translate.text("hw-tracker.popup.sort.field."+this.state.sorting.field),
+                        dir: Translate.text("hw-tracker.popup.sort.dir."+this.state.sorting.dir)
+                    }} />
+                </span>
                 <div className="-Assignments">
                     {this.state.assignments.length > 0 ?
                         this.sortedAssignments.map(assignment=>

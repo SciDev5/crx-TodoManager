@@ -35,15 +35,15 @@ class SortPopup extends React.Component {
     render() {
         var sorting = this.state.sorting;
         return (<Popup className="hwt-SortPopup">
-            <h2><Translate text="!!Change sorting"/></h2>
-            <div className="-row"><label><Translate text="!!sort by"/></label>
+            <h2><Translate text="hw-tracker.popup.sort.title"/></h2>
+            <div className="-row"><label><Translate text="hw-tracker.popup.sort.field"/></label>
                 <SelectInput value={sorting.field} 
-                    options={[{nameKey:"!!due",id:"due"},{nameKey:"!!name",id:"name"},{nameKey:"!!sub",id:"subject"}]} 
+                    options={[{nameKey:"hw-tracker.popup.sort.field.due",id:"due"},{nameKey:"hw-tracker.popup.sort.field.name",id:"name"},{nameKey:"hw-tracker.popup.sort.field.subject",id:"subject"}]} 
                     change={this.setSorting.bind(this,"field")} />
             </div>
-            <div className="-row"><label><Translate text="!!sort order"/></label>
+            <div className="-row"><label><Translate text="hw-tracker.popup.sort.dir"/></label>
                 <SelectInput value={sorting.dir}
-                    options={[{nameKey:"!!asc",id:"asc"},{nameKey:"!!dsc",id:"dsc"}]}
+                    options={[{nameKey:"hw-tracker.popup.sort.dir.asc",id:"asc"},{nameKey:"hw-tracker.popup.sort.dir.dsc",id:"dsc"}]}
                     change={this.setSorting.bind(this,"dir")} />
             </div>
             <Button action={()=>this.done()} nameKey="general.done" className="-done-button"/>

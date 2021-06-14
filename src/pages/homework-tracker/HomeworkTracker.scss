@@ -5,15 +5,23 @@
         width: calc(50% - 10px);
         text-align: center;
     }
-    .-Assignments {
-        .-empty-info {
-            display: block;
-            margin: 10px;
-            padding: 5px;
-            text-align: center;
-            background: var(--background-med);
-            color: var(--text-med);
-        }
+    .-Assignments .-empty-info {
+        display: block;
+        margin: 10px;
+        padding: 5px;
+        text-align: center;
+        background: var(--background-med);
+        color: var(--text-med);
+    }
+    .-sort-current {
+        display: block;
+        margin: 5px;
+        margin-top: 0px;
+        padding: 2px 5px;
+        font-size: 0.8em;
+        text-align: center;
+        background: var(--background-med);
+        color: var(--text-med);
     }
 }
 
