@@ -2,7 +2,7 @@
 
 .SelectInput:not(.-unstyled) {
     position: relative;
-    @include interactable(true);
+    @include interactable();
     > .-icon {
         position: absolute;
         top: 3px;

@@ -82,32 +82,40 @@
     }
 }
 
+@mixin popupInputRow {
+    text-align: center;
+    label {
+        width: 120px;
+        height: 25px;
+        line-height: 25px;
+        background: var(--background-em);
+        color: var(--text-em);
+        display: inline-block;
+        margin: 5px;
+        padding: 0px 10px;
+        text-align: right;
+    }
+    .TextInput, .DateInput, .SelectInput {
+        width: 190px;
+    }
+}
 
 .hwt-EditPopup {
+    .-input {
+        @include popupInputRow();
+    }
+}
+.hwt-SortPopup {
+    .-row {
+        @include popupInputRow();
+    }
+}
+.hwt-EditPopup, .hwt-SortPopup {
     h2 {
         text-align: center;
         background: var(--background);
         opacity: 0.7;
     }
-    .-input {
-        text-align: center;
-        label {
-            width: 120px;
-            height: 25px;
-            line-height: 25px;
-            background: var(--background-em);
-            color: var(--text-em);
-            display: inline-block;
-            margin: 5px;
-            padding: 0px 10px;
-            text-align: right;
-        }
-        .TextInput, .DateInput {
-            width: 190px;
-        }
-    }
-}
-.hwt-EditPopup, .hwt-SortPopup {
     .-done-button, .-cancel-button {
         width: 190px;
     }
