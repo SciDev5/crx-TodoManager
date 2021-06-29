@@ -25,6 +25,11 @@
     }
 }
 
+$anim-time: var(--anim-time);
+:root { --anim-time: 0.3s; }
+@media (prefers-reduced-motion) {
+    :root { --anim-time: 0s; }
+}
 
 .hwt-Assignment {
     $lSize: 25px;
@@ -41,7 +46,7 @@
             width: $lSize;
             text-align: center;
             font-family: "Odibee Sans", sans-serif;
-            transition: 0.3s transform;
+            transition: $anim-time transform;
             &.-opened {
                 transform: rotate(90deg);
             }
@@ -61,7 +66,7 @@
         }
     }
     .-body {
-        transition: 0.3s height;
+        transition: $anim-time height;
         height: 10em;
         overflow: hidden;
         &:not(.-opened) {

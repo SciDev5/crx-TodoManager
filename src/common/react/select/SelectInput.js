@@ -17,9 +17,16 @@ class SelectInput extends React.Component {
         if (this.props.change && (this.props.change instanceof Function))
             this.props.change(value);
     }
+
+    /** @type {React.RefObject<HTMLSelectElement>} */
+    inputRef = React.createRef();
+    focus() {
+        this.inputRef.current.focus();
+    }
+
     render() {
         return (
-            <select className="SelectInput" onChange={e=>this.onChange(e)}value={this.state.value}>
+            <select className="SelectInput" onChange={e=>this.onChange(e)}value={this.state.value} ref={this.inputRef}>
                 {this.props.options.map(v=>(
                     <option value={v.id} key={v.id}>{Translate.text(v.nameKey,v.nameSubs)}</option>
                 ))}

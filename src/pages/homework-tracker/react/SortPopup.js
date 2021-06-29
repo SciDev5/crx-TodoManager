@@ -13,6 +13,13 @@ class SortPopup extends React.Component {
         super(props);
         this.state = {sorting:props.sorting};
     }
+    /** @type {React.RefObject<SelectInput>} */
+    firstInputRef = React.createRef();
+    componentDidMount() {
+        this.firstInputRef.current.focus();
+    }
+
+
     done() {
         this.props.done(this.state.sorting);
     }
@@ -37,7 +44,7 @@ class SortPopup extends React.Component {
         return (<Popup className="hwt-SortPopup">
             <h2><Translate text="hw-tracker.popup.sort.title"/></h2>
             <div className="-row"><label><Translate text="hw-tracker.popup.sort.field"/></label>
-                <SelectInput value={sorting.field} 
+                <SelectInput value={sorting.field} ref={this.firstInputRef}
                     options={[{nameKey:"hw-tracker.popup.sort.field.due",id:"due"},{nameKey:"hw-tracker.popup.sort.field.name",id:"name"},{nameKey:"hw-tracker.popup.sort.field.subject",id:"subject"}]} 
                     change={this.setSorting.bind(this,"field")} />
             </div>

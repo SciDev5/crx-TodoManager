@@ -120,11 +120,12 @@ class HomeworkTracker extends React.Component {
     }
 
     render() {
+        var inPopup = this.state.popup !== null;
         return (<div className="HomeworkTracker">
             <Header nameKey="hw-tracker" isMainMenu={true}/>
             <div role="main">
-                <Button action={()=>this.openAddPopup()} nameKey={"hw-tracker.popup.create"} className="-add-button" />
-                <Button action={()=>this.openSortPopup()} nameKey={"hw-tracker.popup.sort"} className="-sort-button"/>
+                <Button action={()=>this.openAddPopup()} nameKey={"hw-tracker.popup.create"} className="-add-button" unfocusable={inPopup}/>
+                <Button action={()=>this.openSortPopup()} nameKey={"hw-tracker.popup.sort"} className="-sort-button" unfocusable={inPopup}/>
                 <span className="-sort-current">
                     <Translate text="hw-tracker.popup.sort.current" subs={{
                         field: Translate.text("hw-tracker.popup.sort.field."+this.state.sorting.field),
@@ -136,7 +137,7 @@ class HomeworkTracker extends React.Component {
                         this.sortedAssignments.map(assignment=>
                             <AssignmentRow key={assignment.reactKey} assignment={assignment}
                                 edit={()=>this.openEditPopup(assignment)}
-                                remove={()=>this.removeAssignment(assignment)} /> ) :
+                                remove={()=>this.removeAssignment(assignment)} unfocusable={inPopup} /> ) :
                         <span className="-empty-info"><Translate text="hw-tracker.no-assignments" /></span>
                     }
                 </div>
