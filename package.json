@@ -1,5 +1,5 @@
 {
-    "name": "crx-student-toolkit",
+    "name": "crx-todo-manager",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

@@ -121,7 +121,7 @@ class HomeworkTracker extends React.Component {
 
     render() {
         return (<div className="HomeworkTracker">
-            <Header nameKey="hw-tracker" />
+            <Header nameKey="hw-tracker" isMainMenu={true}/>
             <div role="main">
                 <Button action={()=>this.openAddPopup()} nameKey={"hw-tracker.popup.create"} className="-add-button" />
                 <Button action={()=>this.openSortPopup()} nameKey={"hw-tracker.popup.sort"} className="-sort-button"/>

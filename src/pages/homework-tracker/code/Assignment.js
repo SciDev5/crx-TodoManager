@@ -1,4 +1,5 @@
 // @ts-check
+import Translate from "../../../common/lang/Translate";
 import DayDate from "../../../common/util/DayDate";
 
 class Assignment {
@@ -19,10 +20,10 @@ class Assignment {
     }; }
     set json(data) {
         var { name, subject, link, due, description } = data;
-        this.name        = name           ? name.trim()           : "assignment";
-        this.subject     = subject        ? subject.trim()        : "";
-        this.link        = link           ? link.trim()           : "";
-        this.description = description    ? description.trim()    : "";
+        this.name        = name           ? name.trim()           : Assignment.defaultName;
+        this.subject     = subject        ? subject.trim()        : Assignment.defaultSubject;
+        this.link        = link           ? link.trim()           : Assignment.defaultLink;
+        this.description = description    ? description.trim()    : Assignment.defaultDescription;
         this.due.json = due;
     }
 
@@ -39,7 +40,7 @@ class Assignment {
         return errors;
     }
 
-    static get defaultName() { return "new assignment"; }
+    static get defaultName() { return Translate.text("hw-tracker.default-name"); }
     static get defaultDue() { return DayDate.today; }
     static get defaultSubject() { return ""; }
     static get defaultDescription() { return ""; }

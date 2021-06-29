@@ -17,12 +17,13 @@
         "back": "<< back"
     },
     "hw-tracker": {
-        "": "Homework Tracker",
-        "no-assignments": "No homework!",
+        "": "Todo Manager",
+        "no-assignments": "Nothing here!",
+        "default-name": "new task",
         "popup": {
             "create": {
-                "":"Add Assignment",
-                "title":"Add/Edit Assignment",
+                "":"Add Task",
+                "title":"Add/Edit Task",
                 "name": "Name",
                 "link": "Link",
                 "due": "Due Date",

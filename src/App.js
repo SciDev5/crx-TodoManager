@@ -1,7 +1,6 @@
 // @ts-check
 import { Redirect, Route, Switch } from "react-router";
 import React from "react";
-import Main from "./pages/main/Main";
 import HomeworkTracker from "./pages/homework-tracker/HomeworkTracker";
 
 /** @extends {React.Component<{},{_currentURL:string},{}>} */
@@ -10,8 +9,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route path="/homework-tracker/" exact><HomeworkTracker/></Route>
-                    <Route path="/" exact><Main/></Route>
+                    <Route path="/" exact><HomeworkTracker/></Route>
                     
                     <Route path="/index.html" exact><Redirect to="/"/></Route>
                 </Switch>
