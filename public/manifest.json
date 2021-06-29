@@ -11,7 +11,8 @@
   },
   "icons": {
     "512": "logo512.png",
-    "192": "logo192.png"
+    "192": "logo192.png",
+    "128": "logo128.png"
   },
   "content_security_policy": "script-src 'self' 'sha256-TA31vT+jONOcZMWaxf386V5qmnz8BQvvqtmhcZeW1QQ='; object-src 'self'",
   "permissions": [
