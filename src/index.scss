@@ -2,40 +2,39 @@
 @import "./vars.scss";
 
 //*   
-:root { // LIGHT MODE
-  --background: #ffffff;
-  --background-med: #f7f7f7;
-  --background-em: #414141;
-  --text: #000000;
-  --text-med: #353535;
-  --text-em: #ffffff;
+:root { // LIGHT MODE:root
+  --background: #fff;
+  --background-med: #edf9f3;
+  --background-em: #2e6860;
+  --text: #217f61;
+  --text-med: #3a826f;
+  --text-em: #fff;
+  --border: #51ad8e;
+  --interactable-fg: #179f74;
+  --interactable-bg: #d4eae1;
+  --interactable-bg-hov: #cce6df;
+  --interactable-em-fg: #f9fffd;
+  --interactable-em-bg: #58a78d;
 
-  --border: #777777;
-
-  --interactable-fg: #505050;
-  --interactable-bg: #e7e7e7;
-  --interactable-bg-hov: #d6d6d6;
-  --interactable-em-fg: #fdfdfd;
-  --interactable-em-bg: #3b3b3b;
+  --focus-col: #204137;
 }
-/*/    
-:root { // DARK MODE
-  --background: #3d3d3d;
-  --background-med: #292929;
-  --background-em: #161616;
-  --text: #ffffff;
-  --text-med: #f0f0f0;
-  --text-em: #d6d6d6;
-
-  --border: #777777;
-
-  --interactable-fg: #acacac;
-  --interactable-bg: #252525;
-  --interactable-bg-hov: #474747;
-  --interactable-em-fg: #292929;
-  --interactable-em-bg: #f0f0f0;
+@media (prefers-color-scheme: dark) {
+  :root { // DARK MODE
+    --background: #1b0d2c;
+    --background-med: #2b1842;
+    --background-em: #3e1366;
+    --text: #fff;
+    --text-med: #e2d0f9;
+    --text-em: #e5e2f2;
+    --border: #8d68cc;
+    --interactable-fg: #8860d4;
+    --interactable-bg: #401560;
+    --interactable-bg-hov: #442d54;
+    --interactable-em-fg: #2f0b68;
+    --interactable-em-bg: #c39dff;
+    --focus-col: #ad1eff;
+  }
 }
-//*/
 
 body {
   margin: 0;
@@ -53,7 +52,7 @@ body {
 }
 
 :focus {
-  outline-color: #7c7c7c;
+  outline-color: var(--focus-col);
   outline-style: auto;
   z-index: 3;
   &.hwt-Assignment { position: relative; }
