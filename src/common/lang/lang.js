@@ -87,12 +87,15 @@ function translateComponent(componentType,component,name) {
 
 /**@type {[string,string]}*/
 var locale = ["en","us"];
+var didLocaleChange = false;
 
 /** @param {string} localeString */
-async function setLocale(localeString) {
+async function setLocale(localeString) { console.log(localeString);
     var [lang,region] = localeString.split(/-|_/).map(v=>v.toLowerCase());
-    locale = [lang,region||null];
     translations_local = compileLang(await getTranslationData(lang,region));
+    locale = [lang,region||null];
+    if (onLocaleChange) onLocaleChange();
+    else didLocaleChange = true;
 }
 function getLocale() { return locale.filter(Boolean).join("-"); }
 
@@ -101,11 +104,34 @@ function getLocale() { return locale.filter(Boolean).join("-"); }
  * @param {string} region
  * @returns {Promise<any>} */
 async function getTranslationData(lang,region) {
-    if (region) try { return await import("./translations/"+lang+"-"+region+".json"); } finally {
-    try {             return await import("./translations/"+lang+".json");            } finally {
-    return {}; }}
+    try {
+        if (region) try { return await import("./translations/"+lang+"-"+region+".json"); }
+                finally { return await import("./translations/"+lang+".json"); }
+        else return await import("./translations/"+lang+".json");
+    } catch (_) {
+        throw new Error("language not found");
+    }
 }
 
-const lang = {setLocale,getLocale,translate};
+var onLocaleChange = ()=>null;
+/** @param {() => any} e */
+function setLocaleChangeEvent(e) {
+    onLocaleChange = e;
+    if(didLocaleChange) onLocaleChange();
+    didLocaleChange = false;
+}
+
+// Automatically select first supported language from user.
+(async()=>{for (let lang of navigator.languages) {
+    try {
+        await setLocale(lang); break;
+    } catch(e) {
+        if ((e instanceof Error) && e.message === "language not found")
+            console.log(e);
+        else throw e;
+    }
+}})();
+
+const lang = {setLocale,getLocale,translate,setLocaleChangeEvent};
 window["lang"] = lang;
 export default lang;

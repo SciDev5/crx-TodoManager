@@ -1,0 +1,55 @@
+{
+    "general": {
+        "back": "Volver",
+        "cancel": "Cancelar",
+        "done": "Terminar",
+        "edit": "Editar",
+        "remove": "Eliminar",
+        "due-in": {
+            "passed": "Tarde",
+            "today": "Para hoy",
+            "tomorrow": "Para mañana",
+            "days": ["Para en %days% días",{"days":"number"}],
+            "weeks": ["Para en %weeks% semanas",{"weeks":"number"}]
+        }
+    },
+    "header": {
+        "back": "<< volver"
+    },
+    "hw-tracker": {
+        "": "Todo Manager",
+        "no-assignments": "Nada aquí!",
+        "default-name": "quehacer nuevo",
+        "popup": {
+            "create": {
+                "":"Nuevo Quehacer",
+                "title":"Crear/Editar Quehacer",
+                "name": "Nombre",
+                "link": "Enlace",
+                "due": "Fecha",
+                "subject": "Materia",
+                "description": "Descripción"
+            },
+            "sort": {
+                "":"Cambiar Ordenación",
+                "title": "Cambiar Ordenación",
+                "current": ["Orden de: %field%, %dir%",{"field":"string","dir":"string"}],
+                "field": {
+                    "":"Orden de:",
+                    "due":"Fecha",
+                    "name":"Nombre",
+                    "subject":"Materia"
+                },
+                "dir": {
+                    "":"Dirección:",
+                    "asc": "Ascendente",
+                    "dsc": "Descendiente"
+                }
+            }
+        },
+        "link": "Enlace",
+        "due": "Fecha",
+        "subject": "Materia",
+        "description": "Descripción"
+    }
+}
