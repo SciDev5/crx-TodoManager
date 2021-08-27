@@ -14,7 +14,8 @@
         }
     },
     "header": {
-        "back": "<< back"
+        "back": "<< back",
+        "byScidev": "Created by Joseph Huber (SciDev5)"
     },
     "hw-tracker": {
         "": "Todo Manager",

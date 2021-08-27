@@ -7,12 +7,20 @@
     font-size: 1.2em;
     background: var(--background-em);
     color: var(--text-em);
+    display: flex;
     * {
         padding: 5px 5px 3px 5px;
         display: inline-block;
     }
     .-back {
         border-right: 1px dotted var(--text-em);
+        color: var(--text-em);
+    }
+    .-credit {
+        mix-blend-mode: soft-light;
+        font-size: 0.9em;
+        flex: 1;
+        text-align: end;
         color: var(--text-em);
     }
 }

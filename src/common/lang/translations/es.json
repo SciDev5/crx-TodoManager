@@ -14,7 +14,8 @@
         }
     },
     "header": {
-        "back": "<< volver"
+        "back": "<< volver",
+        "byScidev": "Creado por Joseph Huber (SciDev5)"
     },
     "hw-tracker": {
         "": "Todo Manager",
